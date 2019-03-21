@@ -19,7 +19,7 @@
 
 void HAL_IncTick(void);
 void test0(void);
-
+void tempo (int);
 
 
 /* declaration des variables globales **************/
@@ -62,11 +62,16 @@ int main(void){
 }
 
 void test0(){
-	affiche2LEDs(2);
+	int nTemp =0;
+	while(nTemp < 5){
+			affiche2LEDs(nTemp);
+			nTemp += 1;
+		}
+	
 }
 
 void tempo (int nTemp){
-	//SYSCLOCK tourne à 16MHz
+	//SYSCLOCK tourne à 16MHz, il faut 3 instructions et on pert un (ou deux?!) coup(s) d'horloge du au PipeLine
 	unsigned long ui32Temp = (unsigned long)nTemp*16000000/4;
 	while(ui32Temp >0){
 			ui32Temp--;
