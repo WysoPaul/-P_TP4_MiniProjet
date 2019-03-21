@@ -40,6 +40,7 @@ void tempo (void);
 void SysTick_Handler(){
 	HAL_IncTick();
 }
+
 int main(void){
 	// initialisation des variables globales
 		g_reglage_sec=5;
@@ -66,6 +67,7 @@ int main(void){
 }
 
 void test0(){
+<<<<<<< HEAD
 	
 		// Initialisations des périphéries
 	Init_port_leds();
@@ -80,6 +82,21 @@ void tempo(){
 	int i;
 	int j=8000000;
 	int nTemp=2;
+=======
+	GPIOG->ODR |= 0x00000000;
+	tempo(5);
+	GPIOG->ODR |= 0x00006000;
+}
+
+void tempo (int nTemp){
+	//SYSCLOCK tourne à 16MHz
+	unsigned long ui32Temp = (unsigned long)nTemp*16000000/4;
+	while(ui32Temp >0){
+			ui32Temp--;
+	}
+	
+}
+>>>>>>> 3b3f01fc4474f6874e863c752d88c47d14fe5139
 
 	
 	for (i=0;i<(nTemp*j);i++)

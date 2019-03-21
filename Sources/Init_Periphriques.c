@@ -22,10 +22,10 @@ void Init_port_leds(void)
 	int *ptr_GPIOG_OSPEEDR = (int*)0x40021808;
 	int *ptr_GPIOG_PUPDR = (int*)0x4002180C;
 	
-	*ptr_GPIOG_MODER = (*ptr_GPIOG_MODER & 0x00FFFFFF) | 0x14000000;				// Pin13 et Pin14 General Purpose output mode
+	*ptr_GPIOG_MODER = (*ptr_GPIOG_MODER & 0xC3FFFFFF) | 0x14000000;				// Pin13 et Pin14 General Purpose output mode
 	//*ptr_GPIOG_OTYPER = (*ptr_GPIOG_OTYPER & 0xFFFFFFFF) | 0x00000000;		// Inutile car déjà en mode push-Pull au reset
-	*ptr_GPIOG_OSPEEDR = (*ptr_GPIOG_OSPEEDR & 0x00FFFFFF) | 0x14000000;		// Pin13 & Pin14 medium speed
-	*ptr_GPIOG_PUPDR = (*ptr_GPIOG_PUPDR & 0x00FFFFFF) | 0x28000000;				// Pin13 & Pin14 Pull-Down pour placer à zero au reste	
+	*ptr_GPIOG_OSPEEDR = (*ptr_GPIOG_OSPEEDR & 0xC3FFFFFF) | 0x14000000;		// Pin13 & Pin14 medium speed
+	*ptr_GPIOG_PUPDR = (*ptr_GPIOG_PUPDR & 0xC3FFFFFF) | 0x28000000;				// Pin13 & Pin14 Pull-Down pour placer à zero au reste	
 	
 }
 /***********************************************************************/
