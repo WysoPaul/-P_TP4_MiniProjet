@@ -20,7 +20,7 @@
 void HAL_IncTick(void);
 void test0(void);
 void tempo (int);
-
+void verifHorloges(void);
 
 /* declaration des variables globales **************/
 
@@ -53,7 +53,8 @@ int main(void){
 	
 	// Initialisations des périphéries
 	Init_port_leds();
-	
+	Init_Timer4();
+	verifHorloges();
 	while(1)
 	{
 				test0();
@@ -61,13 +62,17 @@ int main(void){
 	return 0;
 }
 
-void test0(){
+void test0(void){
+	//affiche2LEDs(5);			//Q8
+	
+	//Q9
+	/*
 	int nTemp =0;
 	while(nTemp < 5){
 			affiche2LEDs(nTemp);
 			nTemp += 1;
 		}
-	
+	*/
 }
 
 void tempo (int nTemp){
@@ -79,4 +84,11 @@ void tempo (int nTemp){
 	
 }
 
-
+//
+void verifHorloges(void){
+	int maSysclk = HAL_RCC_GetSysClockFreq();		//0xXXXXXXX => 16MHz => OK
+	int maAHB = HAL_RCC_GetHCLKFreq();					//Valeur abérante 0x8004770 => 134.236.016
+	int monAPB1 = HAL_RCC_GetPCLK1Freq();				//Valeur abérante 0x8004770 => 134.236.016
+	int monAPB2 = HAL_RCC_GetPCLK2Freq();				//Inacessible ?!
+	
+}
