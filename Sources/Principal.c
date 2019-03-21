@@ -54,19 +54,15 @@ int main(void){
 	// Initialisations des périphéries
 	Init_port_leds();
 	
-	
-	test0();
 	while(1)
 	{
-		//rien
+				test0();
 	}	
 	return 0;
 }
 
 void test0(){
-	GPIOG->ODR |= 0x00000000;
-	tempo(5);
-	GPIOG->ODR |= 0x00006000;
+	affiche2LEDs(2);
 }
 
 void tempo (int nTemp){

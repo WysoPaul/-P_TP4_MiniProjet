@@ -9,9 +9,11 @@
 #include "Affled.h"
 
 void affiche2LEDs(unsigned int nTemp) 
-{ 
-
-  
+{
+	GPIOG->ODR = (GPIOG->ODR & 0xFFFF9FFF)| 0x00002000;
+	tempo(nTemp);
+	GPIOG->ODR = (GPIOG->ODR & 0xFFFF9FFF)| 0x00004000;
+	tempo(nTemp);
 }
 void ToggleLedRed(void){
 	
