@@ -19,6 +19,7 @@
 
 void HAL_IncTick(void);
 void test0(void);
+void tempo (void);
 
 
 
@@ -49,22 +50,40 @@ int main(void){
 		g_min_left_time=0;	
 		g_indice=0;
 		g_freq=2;
-	
-	// Initialisations des périphéries
-	Init_port_leds();
+	int nTemp=2;
+
 	
 	
 	test0();
+	
+	
 	while(1)
 	{
-		//rien
+		affiche2LEDs(nTemp);
+	
 	}	
 	return 0;
 }
 
 void test0(){
-	//rien
+	
+		// Initialisations des périphéries
+	Init_port_leds();
+	Init_Timer4();
+	int mySysClock=HAL_RCC_GetSysClockFreq();
+	int monApb2=HAL_RCC_GetPCLK2Freq();
+	
+	
 }
 
+void tempo(){
+	int i;
+	int j=8000000;
+	int nTemp=2;
 
-
+	
+	for (i=0;i<(nTemp*j);i++)
+		i=i+1;
+	
+	}
+	

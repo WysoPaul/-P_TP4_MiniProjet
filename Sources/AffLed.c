@@ -10,9 +10,15 @@
 
 void affiche2LEDs(unsigned int nTemp) 
 { 
-
-  
+	
+GPIOG->ODR &=0xffff9fff;
+GPIOG->ODR |=0x00002000;
+tempo();
+GPIOG->ODR &=0xffff9fff;
+GPIOG->ODR |=0x00004000;
+tempo();	
 }
+
 void ToggleLedRed(void){
 	
 		

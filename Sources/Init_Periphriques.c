@@ -36,7 +36,7 @@ void Init_Timer4(void)    // chennillard
 { 
 
 	 // enable Timer4 clock
-	 
+	 RCC->APB1ENR |=0x00000004;
 	 
 	 // Configuration  du Timer4
 	
