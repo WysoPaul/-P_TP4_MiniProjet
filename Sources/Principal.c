@@ -39,6 +39,7 @@ void test0(void);
 void SysTick_Handler(){
 	HAL_IncTick();
 }
+
 int main(void){
 	// initialisation des variables globales
 		g_reglage_sec=5;
@@ -63,8 +64,18 @@ int main(void){
 }
 
 void test0(){
-	//rien
+	GPIOG->ODR |= 0x00000000;
+	tempo(5);
+	GPIOG->ODR |= 0x00006000;
 }
 
+void tempo (int nTemp){
+	//SYSCLOCK tourne à 16MHz
+	unsigned long ui32Temp = (unsigned long)nTemp*16000000/4;
+	while(ui32Temp >0){
+			ui32Temp--;
+	}
+	
+}
 
 
