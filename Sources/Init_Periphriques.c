@@ -38,10 +38,15 @@ void Init_Timer4(void)    // chennillard
 	 // enable Timer4 clock
 	 RCC->APB1ENR |=0x00000004;
 	 
-	 // Configuration  du Timer4
+	//
+	// Configuration  du Timer4
+		
+	//CEN=1, CKD=00, ARPE=1, CMS=00, DIR=0, OPM=0, URS=1, UDIS=0
+	TIM4->CR1 = (TIM4->CR1 & 0xFFFFFC00) | 0x00000095;					//xxxxxxx xxxxxxxx ------00 10010101
 	
-	
-
+	TIM4->PSC = (TIM4->PSC & 0xFFFF0000) | 0x00000007;				//Diviseur de fréquence par 7+1 = 8
+	TIM4->ARR = (TIM4->ARR & 0xFFFF0000) | 0x000003E7;				//Compter de 0 à 9999 soit 1000 coup
+	TIM4->DIER =  (TIM4->DIER & 0xFFFFFFFE) | 0x00000001;			//UIE=1
 
 
 	// priorité 64
