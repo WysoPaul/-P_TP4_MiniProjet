@@ -35,6 +35,12 @@ void verifHorloges(void);
   int g_freq;
   int i=0;
  //int nTemp=0;
+	int maSysclk = 0;
+	int maAHB = 0;
+	int monAPB1 = 0;
+	int monAPB2 = 0;
+ 
+ 
  //  Call of "IncTick" Handler (ne pas avoir l'exeption due à Systick)
 void SysTick_Handler(){
 	HAL_IncTick();
@@ -66,29 +72,28 @@ void test0(void){
 	//affiche2LEDs(5);			//Q8
 	
 	//Q9
-	/*
 	int nTemp =0;
 	while(nTemp < 5){
 			affiche2LEDs(nTemp);
 			nTemp += 1;
 		}
-	*/
 }
 
 void tempo (int nTemp){
 	//SYSCLOCK tourne à 16MHz, il faut 3 instructions et on pert un (ou deux?!) coup(s) d'horloge du au PipeLine
-	unsigned long ui32Temp = (unsigned long)nTemp*16000000/4;
-	while(ui32Temp >0){
-			ui32Temp--;
+	nTemp = nTemp*16000000/4;
+	while(nTemp >0){
+			nTemp--;
 	}
-	
 }
 
 //
 void verifHorloges(void){
-	int maSysclk = HAL_RCC_GetSysClockFreq();		//0xXXXXXXX => 16MHz => OK
-	int maAHB = HAL_RCC_GetHCLKFreq();					//Valeur abérante 0x8004770 => 134.236.016
-	int monAPB1 = HAL_RCC_GetPCLK1Freq();				//Valeur abérante 0x8004770 => 134.236.016
-	int monAPB2 = HAL_RCC_GetPCLK2Freq();				//Inacessible ?!
+	maSysclk = HAL_RCC_GetSysClockFreq();		//0x00F42400 => 16MHz => OK
+	maAHB = HAL_RCC_GetHCLKFreq();					//Valeur Curieuse 0x00E51D00 = 15.015.168 soit un facteur de 1,0656 ou 0,938
+	monAPB1 = HAL_RCC_GetPCLK1Freq();				//Valeur Curieuse 0x00E51D00
+	monAPB2 = HAL_RCC_GetPCLK2Freq();				//Valeur Curieuse 0x00E51D00
+	
+	
 	
 }
