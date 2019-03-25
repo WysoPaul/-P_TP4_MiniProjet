@@ -2,6 +2,7 @@
 ".\objects\affled.o"
 ".\objects\principal.o"
 ".\objects\init_periphriques.o"
+".\objects\fonctions_interruption.o"
 ".\objects\stm32f4xx_hal.o"
 ".\objects\stm32f4xx_hal_cortex.o"
 ".\objects\stm32f4xx_hal_dma.o"

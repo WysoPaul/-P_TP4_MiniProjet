@@ -29,7 +29,7 @@ void Init_port_leds(void)
 	
 }
 /***********************************************************************/
-//********* INITIALISATION DE TIMER2 *********************************/
+//********* INITIALISATION DE TIMER4 *********************************/
 
 /********************************************************/
 void Init_Timer4(void)    // chennillard
@@ -50,10 +50,11 @@ void Init_Timer4(void)    // chennillard
 
 
 	// priorité 64
+	NVIC->IP[7] = (NVIC->IP[7] & 0xFFFF00FF)| 0x00004000;									//IT=30, 30/4 = 7, 30%4 = 2, Priorité 64 = 0x40, 128 = 0x80
 	
 	// Autorisation interruption
-	
-		TIM4->SR &= ~1;  // acqutement interruption
+	NVIC->ISER[0] |= 0x40000000;
+	TIM4->SR &= ~1;  // acqutement interruption
 
 }
 	

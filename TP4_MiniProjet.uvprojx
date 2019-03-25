@@ -397,6 +397,11 @@
               <FileType>1</FileType>
               <FilePath>.\Sources\Init_Periphriques.c</FilePath>
             </File>
+            <File>
+              <FileName>Fonctions_interruption.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Sources\Fonctions_interruption.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
