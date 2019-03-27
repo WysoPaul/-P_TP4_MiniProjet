@@ -23,6 +23,7 @@ extern int g_sec_left_time;
 extern int g_min_left_time;
 extern int g_indice;
 extern  int g_freq ;
+extern int g_bidon;
 
 
 
@@ -35,7 +36,7 @@ extern  int g_freq ;
 
 void TIM4_IRQHandler(void) 
 	{ 
-	
+	g_bidon++;
 	
 
 	// Acquitement de l'interruption

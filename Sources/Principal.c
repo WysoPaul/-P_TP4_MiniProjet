@@ -19,7 +19,7 @@
 
 void HAL_IncTick(void);
 void test0(void);
-void tempo (int);
+void tempo(int);
 void verifHorloges(void);
 
 /* declaration des variables globales **************/
@@ -34,11 +34,11 @@ void verifHorloges(void);
   int g_indice;
   int g_freq;
   int i=0;
- //int nTemp=0;
+	int g_bidon=0;
 	int maSysclk = 0;
-	int maAHB = 0;
-	int monAPB1 = 0;
-	int monAPB2 = 0;
+	unsigned int maAHB = 0;
+	unsigned int monAPB1 = 0;
+	unsigned int monAPB2 = 0;
  
  
  //  Call of "IncTick" Handler (ne pas avoir l'exeption due à Systick)
@@ -90,9 +90,9 @@ void tempo (int nTemp){
 //
 void verifHorloges(void){
 	maSysclk = HAL_RCC_GetSysClockFreq();		//0x00F42400 => 16MHz => OK
-	maAHB = HAL_RCC_GetHCLKFreq();					//Valeur Curieuse 0x00E51D00 = 15.015.168 soit un facteur de 1,0656 ou 0,938
-	monAPB1 = HAL_RCC_GetPCLK1Freq();				//Valeur Curieuse 0x00E51D00
-	monAPB2 = HAL_RCC_GetPCLK2Freq();				//Valeur Curieuse 0x00E51D00
+	maAHB = HAL_RCC_GetHCLKFreq();					//Valeur Curieuse 0xE0051D00 = 3 758 431 488 ????
+	monAPB1 = HAL_RCC_GetPCLK1Freq();				//Valeur Curieuse 0xE0051D00
+	monAPB2 = HAL_RCC_GetPCLK2Freq();				//Valeur Curieuse 0xE0051D00
 	
 	
 	

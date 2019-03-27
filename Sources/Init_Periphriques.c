@@ -46,15 +46,22 @@ void Init_Timer4(void)    // chennillard
 	
 	TIM4->PSC = (TIM4->PSC & 0xFFFF0000) | 0x00000007;				//Diviseur de fréquence par 7+1 = 8
 	TIM4->ARR = (TIM4->ARR & 0xFFFF0000) | 0x000003E7;				//Compter de 0 à 9999 soit 1000 coup
-	TIM4->DIER =  (TIM4->DIER & 0xFFFFFFFE) | 0x00000001;			//UIE=1
+	TIM4->DIER =  (TIM4->DIER & 0xFFFFFFFE) | 0x00000001;			//UIE=1 Update Interupt Enable
 
+	//
+	//Configuration du NVIC
 
-	// priorité 64
-	NVIC->IP[7] = (NVIC->IP[7] & 0xFFFF00FF)| 0x00004000;									//IT=30, 30/4 = 7, 30%4 = 2, Priorité 64 = 0x40, 128 = 0x80
+	// priorité 64 (ou 128 fct du sujet de TP)
+	//NVIC->IP[7] = (NVIC->IP[7] & 0xFF0FFFFF)| 0x00400000;			//IT=30, 30/4 = 7, 30%4 = 2(soit 3ème! position), Priorité 64 = 0x40, 128 = 0x80
+	//NVIC->IP[7] |= 0x00400000;    <=== C'est pas 7 mais directement 30!!!, le calcul ci-dessus sert à rien :-[]  *#&t@*%
+	NVIC->IP[30] = (NVIC->IP[30] & 0x0F)| 0x40;
 	
-	// Autorisation interruption
-	NVIC->ISER[0] |= 0x40000000;
-	TIM4->SR &= ~1;  // acqutement interruption
+	// Autorisation interruption #30 (cablé au TIMER4)
+	NVIC->ISER[0] |= 0x40000000;						//IT=30, 30/32(!)=0, 30%32(!)=30
+	
+	TIM4->SR &= ~1;  // acquitement interruption
+	// Acquitement de l'interruption au niv du NVIC
+	//NVIC->ICPR[0] |= 0x40000000; ...Semble pas avoi d'effet ... (ou peut-être parce que trop rapide ...
 
 }
 	

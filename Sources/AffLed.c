@@ -7,6 +7,7 @@
 
 #include "stm32f4xx.h"
 #include "Affled.h"
+extern void tempo(int);
 
 void affiche2LEDs(unsigned int nTemp) 
 {
