@@ -11,7 +11,6 @@
 #include "Affled.h"
 
 
-
 // Importation des variables globales
 extern int g_current_time_10ms;
 extern int g_var_chennillard;
@@ -26,24 +25,21 @@ extern  int g_freq ;
 extern int g_bidon;
 
 
-
-
-
-
 /********************************************************************/
 // Fonctions qu'on ne doit jamais appeler, 
 // c'est le  NVIC qui s'en charge (contrôleur d'interruptions)
 
 void TIM4_IRQHandler(void) 
 	{ 
-	g_bidon++;
-	
+		g_nbTimes++;
+		if(2000 == g_nbTimes){
+			ToggleLedRed();
+			ToggleLedGreen();
+			g_nbTimes = 0;
+		}
 
 	// Acquitement de l'interruption
 		TIM4->SR &= ~1; 
-
-
-	
 
 	}
 	/***********************************************/

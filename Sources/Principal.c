@@ -34,6 +34,7 @@ void verifHorloges(void);
   int g_indice;
   int g_freq;
   int i=0;
+	
 	int g_bidon=0;
 	int maSysclk = 0;
 	unsigned int maAHB = 0;
@@ -59,11 +60,12 @@ int main(void){
 	
 	// Initialisations des périphéries
 	Init_port_leds();
+	ToggleLedRed();						//Pour Allumer la LED RED
 	Init_Timer4();
-	verifHorloges();
+	//verifHorloges();
 	while(1)
 	{
-				test0();
+				//test0();
 	}	
 	return 0;
 }
