@@ -59,6 +59,13 @@ int main(void){
 		g_freq=2;
 	
 	// Initialisations des périphéries
+	SCREEN_Init();
+	Affiche_Menu();
+	Affiche_temps_reglage();
+	
+	
+	
+	
 	Init_port_leds();
 	ToggleLedRed();						//Pour Allumer la LED RED
 	Init_Timer4();
